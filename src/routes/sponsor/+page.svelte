@@ -1,0 +1,209 @@
+<script>
+    import Hero from '$lib/components/Hero.svelte';
+    
+    let formData = {
+        name: '',
+        company: '',
+        email: '',
+        message: ''
+    };
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+        // Handle form submission
+        console.log('Form submitted:', formData);
+    }
+</script>
+
+<svelte:head>
+    <title>Sponsor - Archimedes</title>
+    <meta name="description" content="Support the next generation of engineers by sponsoring Archimedes at Virginia Tech." />
+</svelte:head>
+
+<Hero 
+    title="Sponsor Archimedes"
+    subtitle="Our Sponsor Package"
+    image="https://images.squarespace-cdn.com/content/v1/65da7e107ab81564f3ca3dd0/3db3abb6-16b9-4f72-b4ad-3b993b702f1b/52144490206_2b1084dfd4_o+%281%29.jpg"
+/>
+
+<section class="section">
+    <div class="container">
+        <div class="sponsor-content">
+            <div class="intro-text">
+                <p>All proceeds go directly to supporting and growing our many talented members and incredible projects. Please see our sponsor package for a full breakdown and more information about sponsoring Archimedes.</p>
+                <a href="#" class="btn">Download Sponsor Package</a>
+            </div>
+            
+            <div class="sponsors-section">
+                <h2>Meet Our Sponsors</h2>
+                <p>These sponsors make it possible for freshmen engineers to gain hands-on experience, grow technical skills, and explore engineering from day one at Virginia Tech. We are grateful for their support, which enables us to provide opportunities and resources for the next generation of innovators.</p>
+                
+                <div class="sponsors-grid">
+                    <!-- Placeholder for sponsor logos -->
+                    <div class="sponsor-placeholder">Sponsor Logo</div>
+                    <div class="sponsor-placeholder">Sponsor Logo</div>
+                    <div class="sponsor-placeholder">Sponsor Logo</div>
+                    <div class="sponsor-placeholder">Sponsor Logo</div>
+                </div>
+            </div>
+            
+            <div class="contact-section">
+                <h2>Still Have a Question?</h2>
+                <p class="email-link">
+                    <a href="mailto:archimedesvt@gmail.com">archimedesvt@gmail.com</a>
+                </p>
+                
+                <form class="sponsor-form" on:submit={handleSubmit}>
+                    <h3>Fill out this form and we'll get back to you as soon as possible.</h3>
+                    <input 
+                        type="text" 
+                        placeholder="Your Name"
+                        bind:value={formData.name}
+                        required 
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="Company"
+                        bind:value={formData.company}
+                        required 
+                    />
+                    <input 
+                        type="email" 
+                        placeholder="Email"
+                        bind:value={formData.email}
+                        required 
+                    />
+                    <textarea 
+                        placeholder="Message"
+                        rows="5"
+                        bind:value={formData.message}
+                        required
+                    ></textarea>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+                
+                <p class="note">
+                    If you would like to contact our treasurer or president directly, please see the contact information near the end of our sponsor package.
+                </p>
+                <p class="note">
+                    For general inquiries, visit our <a href="/contact">contact</a> page.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .sponsor-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .intro-text {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    
+    .intro-text p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+    }
+    
+    .sponsors-section {
+        margin-bottom: 4rem;
+    }
+    
+    .sponsors-section h2 {
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .sponsors-section p {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        line-height: 1.8;
+    }
+    
+    .sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+    
+    .sponsor-placeholder {
+        background: var(--gray-light);
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        color: var(--gray-medium);
+    }
+    
+    .contact-section {
+        background: var(--gray-light);
+        padding: 3rem;
+        border-radius: 8px;
+    }
+    
+    .contact-section h2 {
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .email-link {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .email-link a {
+        color: var(--text-dark);
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+    
+    .email-link a:hover {
+        color: var(--primary-color);
+    }
+    
+    .sponsor-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .sponsor-form h3 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        color: var(--text-dark);
+    }
+    
+    .sponsor-form input,
+    .sponsor-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    
+    .sponsor-form button {
+        width: 100%;
+    }
+    
+    .note {
+        text-align: center;
+        margin-top: 1rem;
+        color: var(--gray-medium);
+    }
+    
+    .note a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+</style>
