@@ -64,7 +64,21 @@
         line-height: 1.8;
     }
     
-    .image-section {
-        margin-top: 4rem;
-    }
+.image-section {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-section img {
+  width: 100%;
+  max-width: 1200px; /* keeps image neatly centered on large screens */
+  height: auto;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  display: block;
+  box-shadow: var(--shadow-md);
+}
+
 </style>

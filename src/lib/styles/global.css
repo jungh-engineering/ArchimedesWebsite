@@ -1,96 +1,201 @@
+/* =========================================
+   ARCHIMEDES — globals.css
+   Brightened Yellow for Light Surfaces
+   ========================================= */
+
 :root {
-    --primary-color: #861F41;
-    --secondary-color: #E87722;
-    --dark-bg: #1a1a1a;
-    --text-light: #ffffff;
-    --text-dark: #333333;
-    --gray-light: #f5f5f5;
-    --gray-medium: #666666;
+  /* Brand Colors */
+  --archimedes-yellow: #ffb800; /* Warmer, more visible yellow */
+  --archimedes-yellow-bright: #ffd000; /* Brighter version for text/icons on white */
+  --luminal-yellow: #ffdf00; /* Hover/soft accent */
+  --incandescent-gold: #e8aa00; /* Deeper gold for elegant highlights */
+
+  --steel: #192b2e; /* Primary dark */
+  --halogen-haze: #fffcf2; /* Primary light */
+  --black: #000000;
+  --white: #ffffff;
+
+  /* Gradient */
+  --grad-left: #ffb300;
+  --grad-right: #ffd100;
+
+  /* Typography */
+  --font-primary: 'Metropolis', 'Roboto', system-ui, sans-serif;
+  --font-secondary: 'Roboto', system-ui, sans-serif;
+
+  /* Effects */
+  --radius-lg: 12px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.15);
+  --tr: 0.25s ease;
+
+  /* Text Colors */
+  --text-on-dark: var(--halogen-haze);
+  --text-on-light: var(--steel);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
+  background: var(--steel);
+  color: var(--text-on-dark);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+/* Layout */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 88px 0; }
+.section--light { background: var(--halogen-haze); color: var(--text-on-light); }
+.section--dark { background: var(--steel); color: var(--text-on-dark); }
 
-.section {
-    padding: 80px 0;
-}
-
-.section-dark {
-    background-color: var(--dark-bg);
-    color: var(--text-light);
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 32px;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #6a1833;
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background-color: var(--secondary-color);
-}
-
-.btn-secondary:hover {
-    background-color: #d66a1c;
-}
-
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+  color: var(--text-on-dark);
+}
+.section--light h1, .section--light h2, .section--light h3, .section--light h4 {
+  color: var(--steel);
 }
 
-h1 { font-size: 3.5rem; }
+h1 { font-size: 3.2rem; }
 h2 { font-size: 2.5rem; }
-h3 { font-size: 1.8rem; }
-h4 { font-size: 1.3rem; }
+h3 { font-size: 1.8rem; font-weight: 700; }
+h4 { font-size: 1.25rem; font-weight: 600; }
+
+p {
+  font-family: var(--font-secondary);
+  font-size: 1.0625rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  opacity: 0.98;
+}
+
+.overline {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--luminal-yellow);
+}
 
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.5rem; }
-    h4 { font-size: 1.2rem; }
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
 }
 
-.hero-image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 8px;
+/* Links */
+a {
+  color: var(--archimedes-yellow);
+  text-decoration: none;
+  transition: color var(--tr);
+}
+a:hover { color: var(--luminal-yellow); }
+
+.section--light a {
+  color: var(--archimedes-yellow-bright);
+}
+.section--light a:hover {
+  color: #ffb600;
 }
 
-.text-center {
-    text-align: center;
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-on-dark);
+}
+.card--accent { border-color: rgba(255, 200, 0, 0.35); }
+
+/* Light cards */
+.section--light .card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--text-on-light);
+}
+.section--light .card h3,
+.section--light .card h4 {
+  color: var(--archimedes-yellow-bright);
+}
+.section--light .card p {
+  color: var(--steel);
 }
 
-.mb-4 { margin-bottom: 2rem; }
-.mb-6 { margin-bottom: 3rem; }
-.mt-4 { margin-top: 2rem; }
-.mt-6 { margin-top: 3rem; }
+/* Utility for yellow highlights */
+.text-yellow { color: var(--archimedes-yellow) !important; }
+.section--light .text-yellow { color: var(--archimedes-yellow-bright) !important; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--tr);
+}
+
+/* Brightened for light surfaces */
+.btn--primary {
+  background: var(--archimedes-yellow);
+  color: var(--steel);
+}
+.btn--primary:hover {
+  background: var(--archimedes-yellow-bright);
+}
+.section--light .btn--primary {
+  background: var(--archimedes-yellow-bright);
+  color: var(--steel);
+}
+.section--light .btn--primary:hover {
+  background: #ffea4d;
+}
+
+/* Outline */
+.btn--outline {
+  color: var(--archimedes-yellow);
+  border-color: var(--archimedes-yellow);
+  background: transparent;
+}
+.btn--outline:hover {
+  color: var(--archimedes-yellow-bright);
+  border-color: var(--archimedes-yellow-bright);
+  background: rgba(255, 200, 0, 0.1);
+}
+
+/* Footer */
+.footer {
+  background: #0f1d1f;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 56px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.footer a { color: var(--archimedes-yellow); }
+.footer a:hover { color: var(--luminal-yellow); }
+
+/* Utilities */
+.text-center { text-align: center; }
+.bg-halogen { background: var(--halogen-haze) !important; }
+.bg-steel { background: var(--steel) !important; color: var(--text-on-dark) !important; }
+.bg-gradient { background: linear-gradient(90deg, var(--grad-left), var(--grad-right)) !important; }
+
+.border-yellow { border-color: var(--archimedes-yellow) !important; }
+.section--light .border-yellow { border-color: var(--archimedes-yellow-bright) !important; }
+

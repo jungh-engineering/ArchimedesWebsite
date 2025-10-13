@@ -80,89 +80,118 @@
 </section>
 
 <style>
-    .faq-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    
-    .faq-item {
-        background: white;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-    
-    .faq-item.open {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-    
-    .faq-question {
-        width: 100%;
-        padding: 1.5rem;
-        background: white;
-        border: none;
-        text-align: left;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background-color 0.3s ease;
-    }
-    
-    .faq-question:hover {
-        background-color: var(--gray-light);
-    }
-    
-    .icon {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-    }
-    
-    .faq-answer {
-        padding: 0 1.5rem 1.5rem;
-        animation: slideDown 0.3s ease;
-    }
-    
-    .faq-answer p {
-        line-height: 1.6;
-        color: var(--text-dark);
-    }
-    
+  .faq-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Card */
+  .faq-item {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr);
+  }
+  .faq-item.open {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255, 200, 0, 0.35); /* yellow accent glow */
+  }
+
+  /* Trigger */
+  .faq-question {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    color: var(--steel);
+    border: 0;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background var(--tr), color var(--tr);
+  }
+  .faq-question:hover {
+    background: var(--halogen-haze);
+  }
+  .faq-question:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 208, 0, 0.25);
+  }
+
+  /* Plus / caret icon */
+  .icon {
+    font-size: 1.4rem;
+    color: var(--archimedes-yellow-bright);
+    transition: transform var(--tr), color var(--tr);
+  }
+  .faq-item.open .icon {
+    transform: rotate(45deg); /* if using + as icon */
+    color: var(--archimedes-yellow);
+  }
+
+  /* Answer */
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    animation: slideDown .25s ease;
+  }
+  .faq-answer p {
+    line-height: 1.65;
+    color: var(--steel);
+  }
+
+    /* “More questions” CTA block */
     .more-questions {
-        margin-top: 3rem;
-        text-align: center;
-        padding: 2rem;
-        background: var(--gray-light);
-        border-radius: 8px;
+    margin-top: 3rem;
+    text-align: center;
+    padding: 2rem;
+    background: var(--halogen-haze);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: var(--black); /* make all text black */
     }
-    
+
     .more-questions h3 {
-        color: var(--primary-color);
-        margin-bottom: 1rem;
+    color: var(--black);
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
     }
-    
+
+    .more-questions p {
+    color: var(--black);
+    }
+
     .more-questions a {
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 600;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color var(--tr), text-decoration-color var(--tr);
     }
-    
-    .more-questions a:hover {
-        text-decoration: underline;
-    }
-    
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+
+.more-questions a:hover {
+  color: var(--steel); /* subtle dark hover shift */
+  text-decoration: underline;
+}
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Motion-safe */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-question,
+    .icon,
+    .faq-answer { transition: none !important; }
+    .faq-answer { animation: none !important; }
+  }
 </style>
