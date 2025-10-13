@@ -27,6 +27,7 @@
                 <li><a href="/about" class:active={$page.url.pathname === '/about'}>About</a></li>
                 <li><a href="/design-teams" class:active={$page.url.pathname === '/design-teams'}>Design Teams</a></li>
                 <li><a href="/apply" class:active={$page.url.pathname === '/apply'}>Apply</a></li>
+                <li><a href="/faq" class:active={$page.url.pathname === '/faq'}>FAQ</a></li>
                 <li><a href="/sponsor" class:active={$page.url.pathname === '/sponsor'}>Sponsor</a></li>
                 <li><a href="/contact" class:active={$page.url.pathname === '/contact'}>Contact</a></li>
             </ul>
