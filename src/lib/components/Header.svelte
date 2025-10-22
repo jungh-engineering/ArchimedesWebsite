@@ -7,10 +7,10 @@
 <header class="nav">
   <nav class="container nav__inner">
     <!-- Brand -->
-    <a href="/" class="brand">
-      <span class="brand__title">ARCHIMEDES</span>
-      <span class="brand__sub">at Virginia Tech</span>
+    <a href="/" class="block max-w-[150px]">
+      <img src="/logoheader.png" alt="logo" class="w-auto h-auto object-contain" />
     </a>
+
 
     <!-- Mobile toggle -->
     <button class="hamburger" on:click={toggleMobileMenu} aria-label="Toggle navigation" aria-expanded={mobileMenuOpen}>
