@@ -8,9 +8,8 @@
         message: ''
     };
     
-    function handleSubmit(e) {
-        e.preventDefault();
-        // Handle form submission
+    function handleSubmit() {
+        
         console.log('Form submitted:', formData);
     }
 </script>
@@ -26,12 +25,15 @@
     image="https://images.squarespace-cdn.com/content/v1/65da7e107ab81564f3ca3dd0/3db3abb6-16b9-4f72-b4ad-3b993b702f1b/52144490206_2b1084dfd4_o+%281%29.jpg"
 />
 
+
 <section class="section">
     <div class="container">
         <div class="sponsor-content">
             <div class="intro-text">
                 <p>All proceeds go directly to supporting and growing our many talented members and incredible projects. Please see our sponsor package for a full breakdown and more information about sponsoring Archimedes.</p>
-                <a href="#" class="btn">Download Sponsor Package</a>
+                <a href="/sponsor.pdf" download class="btn">
+                    Download Sponsor Package
+                </a>
             </div>
             
             <div class="sponsors-section">
@@ -40,10 +42,9 @@
                 
                 <div class="sponsors-grid">
                     <!-- Placeholder for sponsor logos -->
-                    <div class="sponsor-placeholder">Sponsor Logo</div>
-                    <div class="sponsor-placeholder">Sponsor Logo</div>
-                    <div class="sponsor-placeholder">Sponsor Logo</div>
-                    <div class="sponsor-placeholder">Sponsor Logo</div>
+                    <img src="/altec.webp" alt="altec" class="w-100">
+                    <img src="/mis.webp" alt="mis" class="sponsor-picture">
+                    <img src="/sec.webp" alt="sec" class="sponsor-picture">
                 </div>
             </div>
             
@@ -94,6 +95,9 @@
 </section>
 
 <style>
+    .sponsor-picture {
+  width: 200px;
+}
     .sponsor-content {
         max-width: 900px;
         margin: 0 auto;

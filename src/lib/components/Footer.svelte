@@ -35,7 +35,7 @@
     </div>
 
     <div class="footer__bottom">
-      <p>&copy; 2024 Archimedes at Virginia Tech. All rights reserved.</p>
+      <p>&copy; 2025 Archimedes at Virginia Tech. All rights reserved.</p>
     </div>
   </div>
 </footer>

@@ -8,8 +8,11 @@
   <nav class="container nav__inner">
     <!-- Brand -->
     <a href="/" class="brand">
-      <span class="brand__title">ARCHIMEDES</span>
-      <span class="brand__sub">at Virginia Tech</span>
+              <div class="image-section">
+            <img src="/logoheader.png" 
+                 alt="logoheader" 
+                 class="hero-image" />
+        </div>
     </a>
 
     <!-- Mobile toggle -->
@@ -33,6 +36,19 @@
 </header>
 
 <style>
+  .image-section {
+    height: 68px;
+    display: flex;
+    align-items: center;
+  }
+
+  .image-section img {
+    height: 52px;
+    width: auto;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+  }
+
   /* Uses globals: .nav base styles, colors, container spacing, link underline hover */
   .nav {
     /* globals already provide sticky dark bar; this ensures good contrast */
@@ -51,10 +67,9 @@
   /* Brand lockup */
   .brand {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     text-decoration: none;
     color: var(--text-on-dark);
-    line-height: 1.1;
   }
   .brand__title {
     font-weight: 900;
@@ -125,6 +140,10 @@
   /* Mobile behavior */
   @media (max-width: 900px) {
     .hamburger { display: flex; }
+
+    .image-section {
+      display: none; /* Hide logo on mobile to save space */
+    }
 
     .menu {
       position: fixed;

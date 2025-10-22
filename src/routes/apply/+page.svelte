@@ -1,14 +1,10 @@
 <script>
     import Hero from '$lib/components/Hero.svelte';
     
-    let email = '';
-    let submitted = false;
-    
-    function handleSubmit(e) {
-        e.preventDefault();
-        // Handle form submission here
-        submitted = true;
+    function handleSubmit() {
+        window.open("https://forms.gle/hn8M2EEhQZfhetTR9");
     }
+
 </script>
 
 <svelte:head>
@@ -29,10 +25,12 @@
                 <h2>Applications are now closed for 25-26!</h2>
                 <p>Please fill out our interest form for updates and instructions on applying to Archimedes. You will automatically be unsubscribed from our mailing list once the recruiting season has ended.</p>
             </div>
+
+            <button onclick={handleSubmit}> Click to fill out the interest form! </button>
             
+            <!-- 
             {#if !submitted}
                 <form class="interest-form" on:submit={handleSubmit}>
-                    <h3>Join Our Interest List</h3>
                     <input 
                         type="email" 
                         bind:value={email}
@@ -47,6 +45,7 @@
                     <p>We've added you to our interest list. You'll receive updates about the next application period.</p>
                 </div>
             {/if}
+        -->
         </div>
     </div>
 </section>
@@ -76,11 +75,6 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         text-align: center;
-    }
-    
-    .interest-form h3 {
-        color: var(--text-dark);
-        margin-bottom: 1.5rem;
     }
     
     .interest-form input {
