@@ -19,10 +19,12 @@
     <!-- Brand -->
     <a href="/" class="brand">
       <div class="image-section">
-        <img src="/logoheader.png" alt="logoheader" class="hero-image" />
+        <img src="/bulb_white.webp" 
+        alt="bulb_white" 
+        class="hero-image" />
       </div>
     </a>
-
+    
     <!-- Mobile toggle -->
     <button
       class="hamburger"
@@ -37,6 +39,7 @@
 
     <!-- overlay for solid background -->
     <div class="menu-overlay" class:open={mobileMenuOpen} on:click={toggleMobileMenu} />
+
 
     <!-- Desktop / Mobile menu -->
     <ul class="menu" class:open={mobileMenuOpen}>
@@ -57,44 +60,62 @@
     display: flex;
     align-items: center;
   }
-
+  
   .image-section img {
     height: 52px;
     width: auto;
     object-fit: contain;
     border-radius: var(--radius-md);
   }
-
+  
+  /* Uses globals: .nav base styles, colors, container spacing, link underline hover */
   .nav {
-    background: rgba(25, 43, 46, 0.95);
+    /* globals already provide sticky dark bar; this ensures good contrast */
+    background: #00000095;
     backdrop-filter: blur(6px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     position: sticky;
     top: 0;
     z-index: 60;
   }
-
+  
   .nav__inner {
     height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
+  
+  /* Brand lockup */
   .brand {
     display: flex;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: var(--text-on-dark);
+    margin: 0 auto;
   }
 
+  .brand__title {
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    font-size: 1.05rem;
+  }
+  
+  .brand__sub {
+    font-family: var(--font-secondary);
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  
+  /* Menu */
   .menu {
     list-style: none;
     display: flex;
     gap: 1.75rem;
     align-items: center;
   }
-
+  
   .menu a {
     color: var(--text-on-dark);
     text-decoration: none;
@@ -114,7 +135,8 @@
   .menu a.current::after {
     transform: scaleX(1);
   }
-
+  
+  /* Hamburger (mobile) */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -177,11 +199,10 @@
     .hamburger {
       display: flex;
     }
-
     .image-section {
       display: none;
     }
-
+    
     .menu {
       position: fixed;
       inset: 68px 0 auto 0;
@@ -206,7 +227,6 @@
     .menu li {
       width: 100%;
     }
-
     .menu a {
       width: 100%;
       padding: 12px 4px;
