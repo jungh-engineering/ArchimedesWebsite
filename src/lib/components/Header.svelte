@@ -1,16 +1,25 @@
 <script>
   import { page } from '$app/stores';
-  import { onDestroy } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import { browser } from '$app/environment';
 
   let mobileMenuOpen = false;
 
   const toggleMobileMenu = () => {
+    if (!browser) return;
     mobileMenuOpen = !mobileMenuOpen;
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
   };
 
+  onMount(() => {
+    if (!browser) return;
+    // Any initialization code that needs the browser environment
+  });
+
   onDestroy(() => {
-    document.body.style.overflow = '';
+    if (browser) {
+      document.body.style.overflow = '';
+    }
   });
 </script>
 
