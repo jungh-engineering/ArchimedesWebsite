@@ -1,26 +1,42 @@
 <script>
   import { page } from '$app/stores';
+  import { onDestroy } from 'svelte';
+
   let mobileMenuOpen = false;
-  const toggleMobileMenu = () => (mobileMenuOpen = !mobileMenuOpen);
+
+  const toggleMobileMenu = () => {
+    mobileMenuOpen = !mobileMenuOpen;
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+  };
+
+  onDestroy(() => {
+    document.body.style.overflow = '';
+  });
 </script>
 
 <header class="nav">
   <nav class="container nav__inner">
     <!-- Brand -->
     <a href="/" class="brand">
-              <div class="image-section">
-            <img src="/logoheader.png" 
-                 alt="logoheader" 
-                 class="hero-image" />
-        </div>
+      <div class="image-section">
+        <img src="/logoheader.png" alt="logoheader" class="hero-image" />
+      </div>
     </a>
 
     <!-- Mobile toggle -->
-    <button class="hamburger" on:click={toggleMobileMenu} aria-label="Toggle navigation" aria-expanded={mobileMenuOpen}>
+    <button
+      class="hamburger"
+      on:click={toggleMobileMenu}
+      aria-label="Toggle navigation"
+      aria-expanded={mobileMenuOpen}
+    >
       <span class:open={mobileMenuOpen}></span>
       <span class:open={mobileMenuOpen}></span>
       <span class:open={mobileMenuOpen}></span>
     </button>
+
+    <!-- overlay for solid background -->
+    <div class="menu-overlay" class:open={mobileMenuOpen} on:click={toggleMobileMenu} />
 
     <!-- Desktop / Mobile menu -->
     <ul class="menu" class:open={mobileMenuOpen}>
@@ -49,12 +65,13 @@
     border-radius: var(--radius-md);
   }
 
-  /* Uses globals: .nav base styles, colors, container spacing, link underline hover */
   .nav {
-    /* globals already provide sticky dark bar; this ensures good contrast */
-    background: rgba(25, 43, 46, 0.9);
+    background: rgba(25, 43, 46, 0.95);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 60;
   }
 
   .nav__inner {
@@ -64,25 +81,13 @@
     justify-content: space-between;
   }
 
-  /* Brand lockup */
   .brand {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: var(--text-on-dark);
   }
-  .brand__title {
-    font-weight: 900;
-    letter-spacing: 0.18em;
-    font-size: 1.05rem;
-  }
-  .brand__sub {
-    font-family: var(--font-secondary);
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.75);
-  }
 
-  /* Menu */
   .menu {
     list-style: none;
     display: flex;
@@ -96,17 +101,20 @@
     font-weight: 600;
     padding: 10px 0;
     transition: color var(--tr), opacity var(--tr);
-    /* underline on hover comes from globals: .nav a::after */
   }
-  .menu a:hover { color: var(--luminal-yellow); }
+
+  .menu a:hover {
+    color: var(--luminal-yellow);
+  }
+
   .menu a.current {
     color: var(--archimedes-yellow);
   }
+
   .menu a.current::after {
-    transform: scaleX(1); /* show the yellow underline from globals */
+    transform: scaleX(1);
   }
 
-  /* Hamburger (mobile) */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -121,10 +129,12 @@
     padding: 6px;
     transition: border-color var(--tr), background var(--tr);
   }
+
   .hamburger:hover {
     border-color: var(--archimedes-yellow);
     background: rgba(255, 200, 0, 0.06);
   }
+
   .hamburger span {
     display: block;
     width: 100%;
@@ -132,36 +142,71 @@
     background: var(--archimedes-yellow);
     transition: transform var(--tr), opacity var(--tr);
   }
-  /* Simple X animation */
-  .hamburger span.open:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger span.open:nth-child(2) { opacity: 0; }
-  .hamburger span.open:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Mobile behavior */
+  .hamburger span.open:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger span.open:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger span.open:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* overlay */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 68px 0 0 0;
+    background: rgba(10, 18, 20, 0.98);
+    z-index: 30;
+    transition: opacity var(--tr);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .menu-overlay.open {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   @media (max-width: 900px) {
-    .hamburger { display: flex; }
+    .hamburger {
+      display: flex;
+    }
 
     .image-section {
-      display: none; /* Hide logo on mobile to save space */
+      display: none;
     }
 
     .menu {
       position: fixed;
-      inset: 68px 0 0 0;
-      background: var(--steel);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      inset: 68px 0 auto 0;
+      background: transparent;
       box-shadow: var(--shadow-lg);
       flex-direction: column;
       align-items: flex-start;
       padding: 20px 24px 28px;
       gap: 0.25rem;
       transform: translateX(-100%);
-      transition: transform var(--tr);
+      transition: transform var(--tr) ease, opacity var(--tr);
       z-index: 40;
+      pointer-events: none;
     }
-    .menu.open { transform: translateX(0); }
 
-    .menu li { width: 100%; }
+    .menu.open {
+      transform: translateX(0);
+      pointer-events: auto;
+      background: #102224; /* solid panel background when open */
+    }
+
+    .menu li {
+      width: 100%;
+    }
+
     .menu a {
       width: 100%;
       padding: 12px 4px;
