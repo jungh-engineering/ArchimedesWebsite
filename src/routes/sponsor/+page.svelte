@@ -1,16 +1,32 @@
-<script>
+<script lang="ts">
     import Hero from '$lib/components/Hero.svelte';
     
-    let formData = {
-        name: '',
-        company: '',
-        email: '',
-        message: ''
-    };
-    
-    function handleSubmit() {
+    function handleSubmit(event: SubmitEvent) {
+        event.preventDefault();
         
-        console.log('Form submitted:', formData);
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+        formData.append('service_id', 'service_uflz7t4');
+        formData.append('template_id', 'template_tipmow6');
+        formData.append('user_id', 'Jb0db_Gi8slMQgNYj');
+
+        fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Your mail is sent!');
+                form.reset();
+            } else {
+                return response.text().then(text => {
+                    throw new Error(text);
+                });
+            }
+        })
+        .catch((error: Error) => {
+            alert('Oops... ' + error.message);
+        });
     }
 </script>
 
@@ -24,7 +40,6 @@
     subtitle="Our Sponsor Package"
     image="https://images.squarespace-cdn.com/content/v1/65da7e107ab81564f3ca3dd0/3db3abb6-16b9-4f72-b4ad-3b993b702f1b/52144490206_2b1084dfd4_o+%281%29.jpg"
 />
-
 
 <section class="section">
     <div class="container">
@@ -58,26 +73,26 @@
                     <h3>Fill out this form and we'll get back to you as soon as possible.</h3>
                     <input 
                         type="text" 
+                        name="name"
                         placeholder="Your Name"
-                        bind:value={formData.name}
                         required 
                     />
                     <input 
                         type="text" 
+                        name="company"
                         placeholder="Company"
-                        bind:value={formData.company}
                         required 
                     />
                     <input 
                         type="email" 
+                        name="email"
                         placeholder="Email"
-                        bind:value={formData.email}
                         required 
                     />
                     <textarea 
+                        name="message"
                         placeholder="Message"
                         rows="5"
-                        bind:value={formData.message}
                         required
                     ></textarea>
                     <button type="submit" class="btn">Submit</button>
@@ -96,8 +111,9 @@
 
 <style>
     .sponsor-picture {
-  width: 200px;
-}
+        width: 200px;
+    }
+    
     .sponsor-content {
         max-width: 900px;
         margin: 0 auto;

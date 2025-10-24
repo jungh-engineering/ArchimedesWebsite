@@ -1,5 +1,33 @@
-<script>
+<script lang="ts">
     import Hero from '$lib/components/Hero.svelte';
+
+    function handleSubmit(event: SubmitEvent) {
+        event.preventDefault();
+        
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+        formData.append('service_id', 'service_uflz7t4');
+        formData.append('template_id', 'template_tipmow6');
+        formData.append('user_id', 'Jb0db_Gi8slMQgNYj');
+
+        fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Your mail is sent!');
+                form.reset();
+            } else {
+                return response.text().then(text => {
+                    throw new Error(text);
+                });
+            }
+        })
+        .catch((error: Error) => {
+            alert('Oops... ' + error.message);
+        });
+    }
 </script>
 
 <svelte:head>
@@ -30,17 +58,10 @@
             
             <div class="contact-form">
                 <h2>Send us a message</h2>
-                <form>
-                    <input type="text" placeholder="Your Name" required />
-                    <input type="email" placeholder="Your Email" required />
-                    <select required>
-                        <option value="">Select a topic</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="apply">Application Question</option>
-                        <option value="sponsor">Sponsorship</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <textarea placeholder="Your Message" rows="6" required></textarea>
+                <form on:submit={handleSubmit}>
+                    <input type="text" name="name" placeholder="Your Name" required />
+                    <input type="email" name="email" placeholder="Your Email" required />
+                    <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
                     <button type="submit" class="btn">Send Message</button>
                 </form>
             </div>
