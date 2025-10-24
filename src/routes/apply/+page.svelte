@@ -25,9 +25,11 @@
                 <h2>Applications are now closed for 25-26!</h2>
                 <p>Please fill out our interest form for updates and instructions on applying to Archimedes. You will automatically be unsubscribed from our mailing list once the recruiting season has ended.</p>
             </div>
-
-            <button onclick={handleSubmit}> Click to fill out the interest form! </button>
-            
+            <center>
+                <button class="btn interest-btn" on:click={handleSubmit}>
+                Click to fill out the interest form!
+                </button>
+            </center>
             <!-- 
             {#if !submitted}
                 <form class="interest-form" on:submit={handleSubmit}>
@@ -51,6 +53,23 @@
 </section>
 
 <style>
+    .interest-btn {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+        margin-top: 1rem;
+    }
+
+    .interest-btn:hover {
+    background-color: var(--secondary-color);
+    }
     .apply-content {
         max-width: 600px;
         margin: 0 auto;
